@@ -1,0 +1,5 @@
+fs.readdir --> it takes a folder to which we want to read and returns an array of all the files in the folder 
+
+fs.readFile and fs.readFilesync --> used to read the content of a file 
+
+fs.writeFile --> it is used to create a new file in the mentioned dir and we pass data to it  

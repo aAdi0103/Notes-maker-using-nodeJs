@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+</head>
+<body>
+    <div class="full w-full min-h-screen bg-zinc-300 p-4">
+        <div class="form w-full">
+            <form action="/create" method="post">
+                <input class="w-full p-2 outline-none rounded-md" type="text" placeholder="Title of note" name="title">
+                <textarea class="resize-none outline-none w-full p-3 mt-2 rounded-md" placeholder="Write your note here..." name="details"></textarea>
+                <input class="p-2 bg-blue-500 rounded-md mt-2 w-20" type="submit">
+            </form>
+        </div>
+        <div class="notesarea mt-2 p-4 w-full flex gap-3 flex-wrap">
+            <% if(files.length>0) {%> 
+            <% files.forEach(function(file){%> 
+    <div class="notes w-fit h-fit bg-zinc-500 text-white rounded-md p-2">
+        <h1 class="text-blue-300 font-bold text-2xl"><%= file.name%></h1>
+        <p class="mb-3 text-[14px]">
+            <% if(file.content.length>20){ %>
+                <%= file.content.substring(0,20)+'....'%>
+                <%} else {%>
+                    <%= file.content%>
+                    <%}%>
+        </p>
+        <a class="text-blue-500 text-sm" href="/read/<%= file.name %>">Read More</a>
+        <a class="text-zinc-600 text-sm" href="/edit/<%=file.name%>">edit</a>
+        <a class="text-red-600 mx-3 text-sm" href="/delete/<%= file.name%>">Delete</a>
+    </div>
+    <%})%>
+    <%} else{%>
+        <h1 class="text-slate-500">No files here ...</h1>
+        <%}%>
+        </div>
+    </div>
+</body>
+</html>
